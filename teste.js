@@ -1,0 +1,3 @@
+//variaveis
+
+FUI NO BANHEIRO E ENCHER A GARRAFA;

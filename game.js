@@ -24,7 +24,7 @@ function preload(){ //função para carregar objetos que serão inseridos no jog
 
 function create(){ // cria objetos dentro do jogo
     this.add.image(400,300,'bg').setScale(1.2); //Adiciona o background no jogo
-    passarinho = this.add.sprite(100,300,'bird').setScale(1.3);//adiciona uma das sprites do passaro
+    passarinho = this.add.sprite(150,300,'bird').setScale(1.3);//adiciona uma das sprites do passaro
 
     //configurando a animacao de voo do passaro
     this.anims.create({
@@ -34,21 +34,27 @@ function create(){ // cria objetos dentro do jogo
         repeat: -1 //definindo para repeticao infinita
     });
     passarinho.anims.play('fly', true); //rodar a animacao
+    
 }
 
 function update(){ //atualização da lógica que será aplicada dentro do jogo
-    passarinho.x += velx; //determina a velocidade de deslocamento do passaro no eixo x
-    passarinho.y += vely; //determina a velocidade de deslocamento do passaro no eixo y
-    if(passarinho.x > 700 || passarinho.x < 100){ //inverte a direcao do passaro no eixo x
-        velx *= -1;
+    while(passarinho.x<700 || passarinho.x>100){ // loop while para o passarinho andar no eixo x dentro do campo estabelecido
+        passarinho.x += velx; //determina a velocidade de deslocamento do passaro no eixo x
+        if(passarinho.x > 700 || passarinho.x < 100){ //condicao para que se o passarinho passar do campo estabelecido, ele inverte a direcao do passaro no eixo x
+            velx *= -1;
+        }
+        break;
     }
-    if(passarinho.y > 500 || passarinho.y <100){ //inverte a direcao do passaro no eixo y
-        vely *= -1;
+    while(passarinho.y<500 || passarinho.y> 100){ // loop while para o passarinho andar no eixo y dentro do campo estabelecido
+        passarinho.y += vely; //determina a velocidade de deslocamento do passaro no eixo y
+        if(passarinho.y > 500 || passarinho.y <100){ //condicao para que se o passarinho passar do campo estabelecido, ele inverte a direcao do passaro no eixo y
+            vely *= -1;
+        }
+        break;
     }
-    if(velx>0){ //espelha a imagem de acordo com a direacao do passaro no eixo x
+    if(velx>0){ //condicao para espelhar a imagem de acordo com a direacao do passaro no eixo x
         passarinho.setFlip(false, false);
     }else{
         passarinho.setFlip(true,false);
     }
-
 }
